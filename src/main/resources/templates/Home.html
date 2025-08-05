@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tsinjo</title>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        form {
+            margin-bottom: 40px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        ul li {
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tsinjo</h1>
+
+<form th:action="@{/donations}" th:object="${donationForm}" method="post">
+    <input type="email" th:field="*{email}" placeholder="Email" required />
+    <input type="text" th:field="*{paymentMethod}" placeholder="Moyen de paiement" required />
+    <input type="text" th:field="*{volaPaymentId}" placeholder="Référence de paiement" required />
+    <button type="submit">Donner !</button>
+</form>
+
+<h2>Historique</h2>
+
+<ul>
+    <li th:each="donation : ${donations}">
+        <strong>Email :</strong> <span th:text="${donation.donor.email}">email</span> |
+        <strong>Moyen :</strong> <span th:text="${donation.payment.paymentMethod}">moyen</span> |
+        <strong>Référence :</strong> <span th:text="${donation.payment.volaPaymentId}">référence</span> |
+        <strong>Montant :</strong> <span th:text="${donation.payment.amount}">montant</span> Ar |
+        <strong>Date :</strong> <span th:text="${#dates.format(donation.createdAt, 'dd/MM/yyyy HH:mm')}">date</span>
+    </li>
+</ul>
+
+</body>
+</html>

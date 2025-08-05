@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Beneficiary {
-    private Long id;
-    private String email;
-    private String fullName;
+  private Long id;
+  private String email;
+  private String fullName;
 }

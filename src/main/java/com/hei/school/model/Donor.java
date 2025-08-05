@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Donor {
-    private long id;
-    private String email;
-    private String fullName;
+  private long id;
+  private String email;
+  private String fullName;
 }
